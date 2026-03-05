@@ -23,6 +23,11 @@ public class Deal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int finalDays;
+    private int overtimeHours;
+    private int minPayableAmount;
+    private int paidAmount;
+
     @OneToOne(optional = false)
     @JoinColumn(name = "job_id")
     private Job job;
