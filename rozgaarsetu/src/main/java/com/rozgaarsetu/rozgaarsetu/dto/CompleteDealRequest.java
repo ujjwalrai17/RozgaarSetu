@@ -25,3 +25,17 @@ public class CompleteDealRequest {
     @Positive
     private int paidAmount;
 }
+
+
+
+//@Getter
+//@Setter
+//public class CompleteDealRequest {
+//
+//    private Long dealId;
+//    private Long employerId;
+//
+//    private int finalDays;
+//    private int overtimeHours;
+//    private int paidAmount;
+//}

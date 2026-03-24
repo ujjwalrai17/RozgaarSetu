@@ -7,14 +7,20 @@ import com.rozgaarsetu.rozgaarsetu.entity.Role;
 import com.rozgaarsetu.rozgaarsetu.entity.User;
 import com.rozgaarsetu.rozgaarsetu.entity.UserStatus;
 import com.rozgaarsetu.rozgaarsetu.repository.UserRepository;
+import com.rozgaarsetu.rozgaarsetu.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-
+    @Autowired
+    private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
+
+//    private final UserRepository userRepository;
+//    private final JwtUtil jwtUtil;
 
     @Override
     public UserResponse register(RegisterRequest request) {
@@ -44,8 +50,31 @@ public class AuthServiceImpl implements AuthService {
                 .build();
     }
 
+//    @Override
+//    public UserResponse login(LoginRequest request) {
+//        User user = userRepository.findByPhone(request.getPhone())
+//                .orElseThrow(() -> new RuntimeException("Invalid phone or password"));
+//
+//        if (user.getStatus() == UserStatus.BLOCKED) {
+//            throw new RuntimeException("User is blocked");
+//        }
+//
+//        if (!user.getPassword().equals(request.getPassword())) {
+//            throw new RuntimeException("Invalid phone or password");
+//        }
+//
+//        return UserResponse.builder()
+//                .id(user.getId())
+//                .fullName(user.getFullName())
+//                .phone(user.getPhone())
+//                .role(user.getRole())
+//                .status(user.getStatus())
+//                .build();
+//    }
+
     @Override
-    public UserResponse login(LoginRequest request) {
+    public String login(LoginRequest request) {
+
         User user = userRepository.findByPhone(request.getPhone())
                 .orElseThrow(() -> new RuntimeException("Invalid phone or password"));
 
@@ -57,12 +86,10 @@ public class AuthServiceImpl implements AuthService {
             throw new RuntimeException("Invalid phone or password");
         }
 
-        return UserResponse.builder()
-                .id(user.getId())
-                .fullName(user.getFullName())
-                .phone(user.getPhone())
-                .role(user.getRole())
-                .status(user.getStatus())
-                .build();
+        // 🔥 Generate JWT token
+        return jwtUtil.generateToken(user.getId(), user.getRole().name());
     }
+
+
+
 }

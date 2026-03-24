@@ -7,5 +7,5 @@ import com.rozgaarsetu.rozgaarsetu.dto.UserResponse;
 public interface AuthService {
 
     UserResponse register(RegisterRequest request);
-    UserResponse login(LoginRequest request);
+    String login(LoginRequest request);
 }
