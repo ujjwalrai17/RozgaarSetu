@@ -19,7 +19,7 @@ RozgaarSetu is a modern job marketplace platform designed to bridge the gap betw
 
 - **Backend**: Spring Boot (Java)
 - **Architecture**: RESTful API design
-- **Database**: (To be configured)
+- **Database**: MySql
 - **Frontend**: (To be specified)
 
 ## 🚀 Getting Started
