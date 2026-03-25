@@ -72,9 +72,6 @@ RozgaarSetu/
 - **Hiring Management**: Track applications and hiring workflows
 - **Workforce Management**: Tools for managing hired workers and project assignments
 
-## 📝 API Endpoints
-
-(Add your API documentation here)
 
 ## 🤝 Contributing
 
